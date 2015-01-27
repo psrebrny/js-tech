@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+
+        <!-- Optional theme -->
+        <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">
+        <link rel="stylesheet" href="screen.css">
+        
+        <!-- Latest compiled and minified JavaScript -->
+    </head>
+    <body>
+        <div class="pos-center">
+          <div id="sketchpad">
+            <div class="sidebar">
+              <div class="colors">
+                <div data-color="#000" class="current"></div>
+                <div data-color="#fff"></div>
+                <div data-color="#848284"></div>
+                <div data-color="#c4c2c4"></div>
+                <div data-color="#840204"></div>
+                <div data-color="#fc0204"></div>
+                <div data-color="#848204"></div>
+                <div data-color="#fcf204"></div>
+                <div data-color="#048204"></div>
+                <div data-color="#04fe04"></div>
+                <div data-color="#048284"></div>
+                <div data-color="#04fefc"></div>
+                <div data-color="#040284"></div>
+                <div data-color="#0402fc"></div>
+                <div data-color="#840284"></div>
+                <div data-color="#fc02fc"></div>
+                <div data-color="#848244"></div>
+                <div data-color="#fcfe84"></div>
+                <div data-color="#044244"></div>
+                <div data-color="#04fe84"></div>
+                <div data-color="#0582fc"></div>
+                <div data-color="#84fefc"></div>
+                <div data-color="#044284"></div>
+                <div data-color="#8482fc"></div>
+                <div data-color="#8402fc"></div>
+                <div data-color="#fc0284"></div>
+                <div data-color="#844204"></div>
+                <div data-color="#fc8244"></div>
+              </div>
+              <div class="after-colors">
+                <label>
+                  Wielkośc pióra
+                </label>
+                <input type="range" min="1" max="20" step="1" value="5">
+                <output>Wybrana wielkość pióra <strong>5</strong></output>
+                <button class="btn btn-danger" id="clear">Wyczyść</button>
+                <button class="btn btn-primary" id="save">Zapisz</button>
+              </div>
+            </div>
+            <div class="canvas">
+              <canvas id="canvas"></canvas>
+            </div>
+            <div class="clear"></div>
+          </div>
+					<!--<img src="giraffe.jpg" id="giraffe">-->
+          
+        </div>
+        <!--<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>-->
+        <!--<script src="../prototype.js" type="text/javascript"></script>-->
+        <script src="script.js" type="text/javascript"></script>
+    </body>
+</html>

@@ -1,0 +1,34 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 2014-06-08, 13:04:34
+    Author     : Paweł
+*/
+
+.pos-center {width: 960px; margin: 0 auto;}
+.clear{clear: both;}
+.sidebar, .canvas{display: inline-block; float: left;}
+.sidebar {width: 260px;}
+input[type="range"]{width: 80%;}
+.canvas {width: 680px; height: 450px;}
+canvas {display: block;margin: 10px auto; border: 1px solid #e2e2e2;}
+img {margin: 10px auto; display: block;}
+.colors{margin: 10px;}
+.colors .current{
+  -webkit-box-shadow:inset 1px 1px 1px 1px #000000;
+box-shadow:inset 1px 1px 1px 1px #000000;
+}
+.colors:after {
+   content: " "; /* Older browser do not support empty content */
+   visibility: hidden;
+   display: block;
+   height: 0;
+   clear: both;
+}
+.colors div{width: 15px; height: 15px; border: 1px solid #ccc; float: left;}
+.colors div:nth-child(2n+1){clear: both;}
+/*.colors div:last-child{}*/
+.colors div{}

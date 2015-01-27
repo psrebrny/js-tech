@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+
+        <!-- Optional theme -->
+        <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">
+        <link rel="stylesheet" href="screen.css">
+        
+        <!-- Latest compiled and minified JavaScript -->
+    </head>
+    <body>
+        <div class="pos-center">
+          <div id="chat">
+              <div class="form-inline">
+                  <div class="form-group">
+                      <input type="text" class="form-control" id="yourName" placeholder="Podaj swoje imię">
+                  </div>
+                  <button class="btn btn-primary" id="join">Dołącz</button>
+              </div>
+
+              <hr>
+
+              <div id="chatWindow">
+                  <!--<div class="chatRow">-->
+                      <!--<span class="time">20:29:46</span>-->
+                      <!--<span class="status">Mirek dołączył do czatu</span>-->
+                  <!--</div>-->
+
+                  <!--<div class="chatRow">-->
+                      <!--<span class="time">20:30:11</span>-->
+                      <!--<span class="name">Mirek</span>-->
+                      <!--<span class="message">Hej z tej strony Mirek</span>-->
+                  <!--</div>-->
+
+              </div>
+
+              <div class="form-group">
+                  <textarea class="form-controll" rows="3" id="message" placeholder="Wiadomość..."></textarea>
+
+              </div>
+              <button class="btn btn-primary pull-right" id="submit" disabled>Wyślij</button>
+
+          </div>
+        </div>
+        <!--<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>-->
+        <!--<script src="../prototype.js" type="text/javascript"></script>-->
+        <script src="script.js" type="text/javascript"></script>
+    </body>
+</html>

@@ -1,0 +1,49 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 2014-06-08, 13:04:34
+    Author     : Paweł
+*/
+
+.pos-center {width: 80%; margin: 0 auto;}
+canvas {display: block;margin: 10px auto; border: 1px solid #e2e2e2;}
+#chatWindow {
+    height: 200px;
+    padding: 12px 0;
+    margin-bottom: 15px;
+    overflow: auto;
+    border: 1px #ccc solid;
+    border-radius: 4px;
+}
+.chatRow {
+    padding: 5px 12px;
+    border-bottom: 1px #dfdfdf dashed;
+}
+.chatRow .time {
+    font-size: 12px;
+    color: #c2c2c2;
+}
+.chatRow .status {
+    font-size: 12px;
+    font-style: italic;
+    color: #868686;
+}
+.chatRow .name{
+    font-weight: 700;
+}
+.chatRow .message{
+    font-size: 12px;
+}
+
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+textarea#message {
+    resize: none;
+    width: 100%;
+}

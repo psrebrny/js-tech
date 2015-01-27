@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+
+        <!-- Optional theme -->
+        <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">
+        <link rel="stylesheet" href="screen.css">
+        
+        <!-- Latest compiled and minified JavaScript -->
+    </head>
+    <body>
+        <div class="pos-center">
+            
+          <div id="videoPlayer" class="videoPlayer">
+            <video width="100%">
+              <source src="0181_carsonbridge_540p.mp4.mp4" type="video/mp4">
+              <source src="0181_carsonbridge_540p.oggtheora.ogv" type="video/ogg">
+            </video>
+            <div class="controls">
+              <div class="leftControls">
+                <div class="playPause glyphicon glyphicon-play"></div>
+              </div>
+              <div class="progressBar">
+                <div class="playbackBar"></div>
+                <div class="loadedBar"></div>
+              </div>
+              <div class="rightControls">
+                <div class="time">
+                  <span class="currentTime">0:00</span>
+                  /
+                  <span class="totalTime">0:00</span>
+                </div>
+                <div class="volume glyphicon glyphicon-volume-up">
+                  <div class="fullVolume">
+                    <div class="currentVolume"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>-->
+        <!--<script src="../prototype.js" type="text/javascript"></script>-->
+        <script src="script.js" type="text/javascript"></script>
+    </body>
+</html>
