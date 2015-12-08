@@ -1,7 +1,6 @@
 /*
 
-call wywołany na funkcji jako pierwszy parametr "this" jako kolejne parametry to paramtry funkcji
-apply robi to samo z wyjątkiem że drugim parametrem jest tablica której elementy są parametrami wywołanej funkcji
+bind wywołany na funkcji jako pierwszy parametr "this" jako kolejne parametry to parametry funkcji, zwraca nową funkcję z przekazanymi parametrami
 
  */
 
@@ -19,21 +18,16 @@ var person = {
     say: sayHello
 };
 
-sayHello.call(person, "Witaj");
+var hello = sayHello.bind(person, "Witaj");
 
-var elems = document.querySelectorAll("#list li");
+function bind(fn, obj){
 
-//Array.prototype.forEach.call(elems, function(elem){
-//    console.log(elem);
-//});
+    var args = Array.prototype.slice.call(arguments, 2);
 
-[].forEach.call(elems, function(elem){
-    console.log(elem);
-});
+    return function (){
+        fn.apply(obj, args);
+    }
 
-function sum(first, second, third){
-    console.log(first + second + third);
 }
 
-sum.apply(this, [2,3,4]);
-
+var hello2 = bind(sayHello, person, "Witaj");
