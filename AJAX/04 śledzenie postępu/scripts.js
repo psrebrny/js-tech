@@ -1,5 +1,7 @@
 var xhr = new XMLHttpRequest(),
-    data = new FormData();
+    data = new FormData(),
+    dProgress = document.querySelector("#download"),
+    uProgress = document.querySelector("#upload");
 
 /**
  * UNSET = 0
@@ -17,6 +19,26 @@ xhr.onreadystatechange = function(e){
     if(this.readyState == 4 && this.status == 200){
         console.log(this.response);
     }
+
+};
+
+xhr.onprogress = function(e){
+
+    var percent;
+    if(e.lengthComputable){
+        percent = (e.loaded / e.total) *100;
+        dProgress.value = percent;
+    };
+
+};
+
+xhr.upload.onprogress = function(e){
+
+    var percent;
+    if(e.lengthComputable){
+        percent = (e.loaded / e.total) *100;
+        uProgress.value = percent;
+    };
 
 };
 

@@ -1,4 +1,5 @@
-var xhr = new XMLHttpRequest();
+var xhr = new XMLHttpRequest(),
+    data = new FormData();
 
 /**
  * UNSET = 0
@@ -8,27 +9,21 @@ var xhr = new XMLHttpRequest();
  * DONE = 4
  */
 
-xhr.open('GET', 'o-nas.html', true);
+xhr.open('POST', 'send.php', true);
 
 xhr.onreadystatechange = function(e){
 
 
     if(this.readyState == 4 && this.status == 200){
-
+        console.log(this.response);
     }
 
 };
 
-function logType(e) {
-    console.log(e.type)
-}
-xhr.onloadstart = logType;
-xhr.onprogress = logType;
-xhr.onabort = logType;
-xhr.onerror = logType;
-xhr.onload = logType;
-xhr.ontimeout = logType;
-xhr.onloadend = logType;
+data.append("name", "Jan");
+data.append("lastName", "Kowalski");
+
+// xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 
 
-xhr.send(null);
+xhr.send(data);
