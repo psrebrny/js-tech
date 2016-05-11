@@ -7,9 +7,7 @@ function AJAX(config){
     this._xhr = new XMLHttpRequest();
     this._config = this._extendOptions(config);
     this._assignEvents();
-    this._open();
-    this._assignUserHeaders();
-    this._send();
+    this._beforeSend();
 
 
 }
@@ -23,9 +21,12 @@ AJAX.prototype._defaultConfig = {
         async: true,
         timeout: 0,
         username: null,
-        password: null
+        password: null,
+        testObj: {}
     },
-    headers: {}
+    headers: {},
+    success: null,
+    failure: null
 
 };
 
@@ -61,11 +62,11 @@ AJAX.prototype._each = function(obj, extendedObj){
 
     for(var key in obj) {
         if (key in extendedObj) {
-            if (typeof extendedObj[key] != 'object') {
+            if (typeof extendedObj[key] != 'object' || Object.keys(obj[key]).length <= 0) {
                 obj[key] = extendedObj[key]
             } else {
                 // for (var innerKey in obj[key]) {
-                    this._each(obj[key], extendedObj[key]);
+                this._each(obj[key], extendedObj[key]);
                     //     if(innerKey in extendedObj[key]){
                     //         obj[key][innerKey] = extendedObj[key][innerKey]
                     //     }
@@ -74,7 +75,7 @@ AJAX.prototype._each = function(obj, extendedObj){
 
         }
     }
-
+    console.log(obj);
     return obj
 
 
@@ -94,8 +95,17 @@ AJAX.prototype._assignEvents = function(){
 AJAX.prototype._handlerResponse = function (e) {
 
 
-    if(this._xhr.readyState == 4 && this._xhr.status == 200){
-        console.log("Otrzymano odpowiedź")
+    if(this._xhr.readyState == 4 && this._xhr.status >= 200 && this._xhr.status < 400){
+
+        if(typeof this._config.success == "function"){
+            this._config.success(this._xhr.response, this._xhr)
+
+        }
+
+    }else if(this._xhr.readyState == 4 && this._xhr.status >= 400){
+
+        this._handlerError(this._xhr);
+
     }
 
 
@@ -103,7 +113,10 @@ AJAX.prototype._handlerResponse = function (e) {
 
 AJAX.prototype._handlerError = function (e) {
 
-        console.log("Otrzymano odpowiedź")
+    if(typeof this._config.failure == "function"){
+        this._config.failure(this._xhr)
+
+    }
 
 };
 
@@ -129,29 +142,71 @@ AJAX.prototype._open = function(){
         this._config.options.password
     );
 
+    this._xhr.setRequestHeader("X-Requested-With", "XMLHttpRequest")
     this._xhr.timeout = this._config.options.timeout;
 
 };
 
-AJAX.prototype._send = function(){
+AJAX.prototype._beforeSend = function(){
 
-    this._xhr.send();
+    var isData = Object.keys(this._config.data).length > 0,
+        data = null;
+
+
+    if(this._config.type.toUpperCase() == 'POST' && isData){
+        data = this._serializeFormData(this._config.data);
+    }else if(this._config.type.toUpperCase() == 'GET' && isData){
+        this._config.url += this._serializeData(this._config.data);
+    }
+
+    this._open();
+    this._assignUserHeaders();
+    this._send(data)
+
+};
+
+AJAX.prototype._send = function(data){
+
+    this._xhr.send(data);
+
+};
+
+AJAX.prototype._serializeFormData = function(data){
+
+    var serialized = new FormData();
+
+    for (var key in data){
+        serialized.append(key, data[key]);
+    }
+    return serialized;
+
+};
+
+AJAX.prototype._serializeData = function(data){
+
+    var serialized = "?";
+
+    for(var key in data){
+        serialized += key + '=' + encodeURIComponent(data[key]) + "&";
+    }
+
+    return serialized.slice(0, serialized.length -1);
 
 };
 
 
 var a = AJAX({
-    type: "POST",
+    type: "GET",
     url: "odbierz.php",
     data: {
         firstName: "Janusz",
-        lastName: "Nowak"
+        lastName: "Nowak KOw"
     },
     options: {
-        // async : true,
-        // testObj: {
-        //     sth : 'sth fsdafasd fasddafs',
-        // }
+        async : true,
+        testObj: {
+            sth : 'sth fsdafasd fasddafs',
+        }
     },
 
     headers: {
