@@ -22,7 +22,6 @@ AJAX.prototype._defaultConfig = {
         timeout: 0,
         username: null,
         password: null,
-        testObj: {}
     },
     headers: {},
     success: null,
@@ -39,20 +38,6 @@ AJAX.prototype._extendOptions = function(config){
 
     defaultConfig = this._each(defaultConfig, config);
 
-    // for(var key in defaultConfig){
-    //     if(key in config){
-    //         if(typeof config[key] != 'object'){
-    //             defaultConfig[key] = config[key]
-    //         }else{
-    //             for(var innerKey in defaultConfig[key]){
-    //                 if(innerKey in config[key]){
-    //                     defaultConfig[key][innerKey] = config[key][innerKey]
-    //                 }
-    //             }
-    //         }
-    //
-    //     }
-    // }
     return defaultConfig;
 
 };
@@ -65,17 +50,11 @@ AJAX.prototype._each = function(obj, extendedObj){
             if (typeof extendedObj[key] != 'object' || Object.keys(obj[key]).length <= 0) {
                 obj[key] = extendedObj[key]
             } else {
-                // for (var innerKey in obj[key]) {
                 this._each(obj[key], extendedObj[key]);
-                    //     if(innerKey in extendedObj[key]){
-                    //         obj[key][innerKey] = extendedObj[key][innerKey]
-                    //     }
-                // }
             }
 
         }
     }
-    console.log(obj);
     return obj
 
 
@@ -195,27 +174,56 @@ AJAX.prototype._serializeData = function(data){
 };
 
 
-var a = AJAX({
-    type: "GET",
-    url: "odbierz.php",
-    data: {
-        firstName: "Janusz",
-        lastName: "Nowak KOw"
-    },
-    options: {
-        async : true,
-        testObj: {
-            sth : 'sth fsdafasd fasddafs',
-        }
-    },
+(function(){
 
-    headers: {
-        "X-My-header": "123$Sdf"
-    },
-    success: function(response, xhr){
-        console.log("Success", response, xhr)
-    },
-    failure: function(response, xhr){
-        console.log("Failure", response, xhr)
+    var form = document.querySelector("#form"),
+        message = document.querySelector("#message");
+
+    function showMessage(type, msg) {
+        message.className = type;
+        message.innerHTML = msg;
+
     }
-});
+    
+    function sendEmail(e) {
+        e.preventDefault();
+
+        var fiels = form.querySelectorAll("input, textarea"),
+            data = [];
+
+        [].forEach.call(fiels, function (field) {
+
+            data[field.name] = field.value;
+
+        });
+
+        AJAX({
+            type: form.getAttribute("method"),
+            url: form.getAttribute("action"),
+            data: data,
+            success: function (response, xhr) {
+
+                var res = JSON.parse(response);
+                console.log(res);
+                if("error" in res){
+                    showMessage("error", res.error);
+                }else if(Array.isArray(res)){
+                    showMessage("error", res.join("<br>"))
+                }else if("success" in res){
+                    showMessage("success", res.success);
+                    form.removeEventListener("submit", sendEmail, false);
+                    form.querySelector("button").setAttribute("disabled", "disabled");
+                }
+
+
+            },
+            failure: function(xhr){
+
+            }
+        })
+
+    }
+
+    form.addEventListener("submit", sendEmail, false);
+
+})();
