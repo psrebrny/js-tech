@@ -30,3 +30,19 @@ function setCookie(name, value, days, path, domain, secure){
     document.cookie = cookie;
 
 }
+
+function getCookie(name){
+
+    if(!document.cookie) return null;
+
+    var arr = document.cookie.split('; '),
+        cookies = {};
+
+    arr.forEach(function(cookie){
+        cookie = cookie.split("=");
+        cookies[cookie[0]] = decodeURIComponent(cookie[1]);
+    });
+
+    return cookies[name] || null;
+
+}
