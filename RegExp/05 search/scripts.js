@@ -1,18 +1,34 @@
 /**
- *  zwraca tablicę, kolejne grupy regexpów, a jako ostatni element całą znalezioną wartość
- *  w przypadku gdy regexp nie zawiera /g
- *  gdy regexp zawiera /g zwraca tablicę znalezionych wartości w podanym ciągu znaków
- * @type {Element}
+ *  zwraca number, liczba od której zaczyna się wyrażenie znalezione w ciągu znaków
  */
 
 
-var p = document.querySelector("p");
+var files = [
+    "picture-thumb-150x150.jpg",
+    "beach-thumb-150x150.jpg",
+    "monako-thumb-150x150.jpg",
+    "sportcar-thumb-300x300.jpg",
+    "brazil-big-2000x1300.jpg"
+];
 
-// var regex = new RegExp("\\w+@\\W+\\.\\w{2,4}", "g");
+var regex = /-thumb-\d{1,4}x\d{1,4}/;
+//
+// files.forEach(function (file, i) {
+//
+//     var index = file.search(regex);
+//     if(index > -1){
+//         files[i] = file.substring(0, index);
+//
+//     }
+//
+// });
 
-var regex = /\w+@(\w+\.\w{2,4})/g;
+function stringContains(string, pattern) {
 
-var search = p.textContent.match(regex);
-// var search = regex.exec(p.textContent);
+    var regexp = new RegExp(pattern),
+        index = string.search(regexp)
+        console.log(index)
+    return index > -1;
 
-console.log(search);
+}
+console.log(files, stringContains(files[0], regex))

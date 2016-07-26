@@ -1,13 +1,28 @@
-var p = document.querySelector("p");
+/**
+ * test
+ * zwraca true w przypadku gdy regex został znaleziony w podanym ciągu znaków
+ * false gdy nie został znaleziony w podanym ciągu znaków
+ *
+ * filter
+ * iteruje po tablicy i dodaje element do przypisanej gdy zwrócone zostanie true
+ * @type {string[]}
+ */
 
-// var regex = new RegExp("\\w+@\\W+\\.\\w{2,4}", "g");
 
-var regex = /\w+@(\w+\.\w{2,4})/g;
+var files = [
+    "picture-thumb-150x150.jpg",
+    "beach-thumb-150x150.jpg",
+    "monako-thumb-150x150.jpg",
+    "sportcar-thumb-300x300.jpg",
+    "brazil-big-2000x1300.jpg"
+];
 
-// var search = regex.exec(p.textContent);
-var search,
-    domains = [];
-while (search = regex.exec(p.textContent)){
-    domains.push(search[1]);
-}
-console.log(domains);
+var regex = /150x150/;
+
+var thumbs = files.filter(function (file) {
+
+    return regex.test(file);
+
+});
+
+console.log(thumbs)
